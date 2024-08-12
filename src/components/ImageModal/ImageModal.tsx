@@ -1,10 +1,11 @@
 import Modal from 'react-modal';
 import { AiFillCloseSquare } from 'react-icons/ai';
 import css from './ImageModal.module.css';
+import { ImageModalProps } from '../App/type';
 
 Modal.setAppElement('#root');
 
-const customStyles = {
+const customStyles: ReactModal.Styles = {
   content: {
     position: 'absolute',
     top: '50%',
@@ -19,14 +20,14 @@ const customStyles = {
   },
 };
 
-export default function ImageModal({
+const ImageModal: React.FC<ImageModalProps> = ({
   isOpen,
-  closeModal,
   imageUrl,
   alt_description,
   description,
   likes,
-}) {
+  closeModal,
+}) => {
   return (
     <>
       <Modal
@@ -37,11 +38,6 @@ export default function ImageModal({
         shouldCloseOnEsc={true} // Close on ESC key press
         overlayClassName={css.modalOverlay}
         className={css.modalWrapper}>
-        {/*  <button className={css.buttonModalClose} onClick={() => closeModal()}>
-          <AiFillCloseSquare className={css.closeSvg} />
-        </button>
-        <img src={imageUrl} alt={alt_description} /> */}
-
         <div className={css.modalContent}>
           <button className={css.buttonModalClose} onClick={() => closeModal()}>
             <AiFillCloseSquare className={css.closeSvg} />
@@ -55,4 +51,6 @@ export default function ImageModal({
       </Modal>
     </>
   );
-}
+};
+
+export default ImageModal;

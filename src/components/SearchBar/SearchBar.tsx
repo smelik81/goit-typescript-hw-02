@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { FormEvent, ReactElement, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 
-export default function SearchBar({ onSubmit }) {
-  const [searchQuery, setSearchQuery] = useState('');
+export type SearchBarType = {
+  onSubmit: (value: string) => void;
+};
 
-  const handleSubmit = event => {
+export default function SearchBar({ onSubmit }: SearchBarType): ReactElement {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     if (!searchQuery.trim()) {
@@ -21,6 +25,9 @@ export default function SearchBar({ onSubmit }) {
     setSearchQuery('');
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setSearchQuery(event.target.value.trim());
+
   return (
     <header className={css.wrapper}>
       <form onSubmit={handleSubmit} className={css.container}>
@@ -31,7 +38,7 @@ export default function SearchBar({ onSubmit }) {
           autoFocus
           placeholder='Search images and photos'
           value={searchQuery}
-          onChange={event => setSearchQuery(event.target.value)}
+          onChange={handleChange}
         />
         <button type='submit' className={css.buttonSubmit}>
           <FaMagnifyingGlass size='24px' />

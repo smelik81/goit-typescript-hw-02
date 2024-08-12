@@ -1,6 +1,10 @@
 import css from './LoadMoreBtn.module.css';
 
-export default function LoadMoreBtn({ onClick }) {
+export type LoadMoreBtnType = {
+  onClick: () => void;
+};
+
+export default function LoadMoreBtn({ onClick }: LoadMoreBtnType) {
   return (
     <>
       <button onClick={onClick} className={css.button}>

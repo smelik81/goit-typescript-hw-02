@@ -1,7 +1,18 @@
+import { ReactElement } from 'react';
+import { Articles } from '../../api/articles-api';
+import { ModalImageType } from '../App/type';
 import ImageCard from '../ImageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
-export default function ImageGallery({ images, openModal }) {
+export interface ImageGalleryProps {
+  images: Articles[];
+  openModal: (details: ModalImageType) => void;
+}
+
+export default function ImageGallery({
+  images,
+  openModal,
+}: ImageGalleryProps): ReactElement {
   return (
     <div className={css.container}>
       <ul className={css.list}>
@@ -19,7 +30,12 @@ export default function ImageGallery({ images, openModal }) {
                   src={small}
                   alt={alt_description}
                   onClick={() =>
-                    openModal({ regular, alt_description, description, likes })
+                    openModal({
+                      imageUrl: regular,
+                      alt_description,
+                      description,
+                      likes,
+                    })
                   }
                 />
               </li>

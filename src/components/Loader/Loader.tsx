@@ -1,6 +1,10 @@
 import { Blocks } from 'react-loader-spinner';
 
-export default function Loader() {
+export interface LoaderProps {
+  loading: boolean;
+}
+
+const Loader: React.FC<LoaderProps> = () => {
   return (
     <>
       <Blocks
@@ -14,4 +18,6 @@ export default function Loader() {
       />
     </>
   );
-}
+};
+
+export default Loader;
