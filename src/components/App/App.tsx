@@ -79,7 +79,6 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
     setModalImage(null);
-    /* setModalAlt(''); */
   };
 
   return (
@@ -96,12 +95,12 @@ function App() {
       {modalImage && (
         <ImageModal
           isOpen={modalIsOpen}
-          /*  onRequestClose={closeModal} */
           closeModal={closeModal}
-          imageUrl={modalImage.imageUrl}
+          {...modalImage}
+          /*  imageUrl={modalImage.imageUrl}
           alt_description={modalImage.alt_description}
           description={modalImage.description}
-          likes={modalImage.likes}
+          likes={modalImage.likes} */
         />
       )}
     </div>
